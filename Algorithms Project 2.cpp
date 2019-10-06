@@ -12,6 +12,24 @@ const int SIZE4 = 10000;
 const int seconds = 0;
 
 
+// A utility function to print an array of size n 
+void writeArray(int arr[])
+{
+	for (int i = 0; i < SIZE; i++)
+		cout << arr[i] << " ";
+	cout << "\n";
+}
+
+void populateArray(int arr[], int max)
+{
+	//populate array with random numbers
+	srand((unsigned)time(0));
+	for (int i = 0; i < SIZE; i++)
+	{
+		arr[i] = (rand() % 1000) + 1;
+	}
+}
+
 //*************
 //MergeSort - O(n log n)
 //*************
@@ -117,7 +135,7 @@ void callMergeSort(int arr[], int l, int r)
 
 void insertionSort(int arr[])
 {
-	double time0; // get current time.
+	double time0 = clock(); // get current time.
 
 	int i, key, j;
 
@@ -237,6 +255,28 @@ int partition(int arr[], int low, int high)
 	swap(&arr[i + 1], &arr[high]);
 	return (i + 1);
 }
+//
+////Call this function when you specifically want the best case for QuickSort
+//int partitionBestCase(int arr[], int low, int high)
+//{
+//	//Calculate midpoint of array
+//	int findMidpoint = sizeof(arr) / sizeof(int);
+//
+//	int pivot = arr[findMidpoint / 2]; // pivot  
+//	int i = (low - 1); // Index of smaller element  
+//
+//	for (int j = low; j <= high - 1; j++)
+//	{
+//		// If current element is smaller than the pivot  
+//		if (arr[j] < pivot)
+//		{
+//			i++; // increment index of smaller element  
+//			swap(&arr[i], &arr[j]);
+//		}
+//	}
+//	swap(&arr[i + 1], &arr[high]);
+//	return (i + 1);
+//}
 
 /* The main function that implements QuickSort
 arr[] --> Array to be sorted,
@@ -270,13 +310,7 @@ void callQuickSort(int arr[], int low, int high)
 
 //-------------------------------------------------------
 
-// A utility function to print an array of size n 
-void writeArray(int arr[])
-{
-	for (int i = 0; i < SIZE; i++)
-		cout << arr[i] << " ";
-	cout << "\n";
-}
+
 
 void executeSorts(int arr[], int max)
 {
@@ -296,20 +330,20 @@ void executeSorts(int arr[], int max)
 
 }
 
-void populateArray(int arr[], int max)
-{
-	//populate array with random numbers
-	srand((unsigned)time(0));
-	for (int i = 0; i < SIZE; i++)
-	{
-		arr[i] = (rand() % 1000) + 1;
-	}
-}
+
 
 
 // Driver program to test above functions. 
 int main()
 {
+	/*
+	//Pre-sorted array to use for testing
+	int sortedArr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+
+	//Pass sortedArr[] in to insertion sort to get base case
+	insertionSort(sortedArr);
+	*/
+
 	//Initialize variables for repeat program
 	char repeat = 0;
 
