@@ -305,7 +305,7 @@ void callQuickSort(int arr[], int low, int high)
 	double seconds = difftime(time1, time0);
 	printf("Sorted array using Merge sort:    \n");
 	writeArray(arr);
-	cout << "Elapsed sorting time for Merge Sort: " << setprecision(4) << seconds << " seconds.\n";
+	cout << "Elapsed sorting time for Quick Sort: " << setprecision(4) << seconds << " seconds.\n";
 }
 
 //-------------------------------------------------------
@@ -317,14 +317,15 @@ void executeSorts(int arr[], int max)
 	populateArray(arr, max);
 	//Creates a dummy array to reset the value of arr[] to
 	int* cloneArr = new int[max];
-	cloneArr = arr;
+	*cloneArr = *arr;
+	writeArray(cloneArr);
 
 	insertionSort(arr);
-	arr = cloneArr;
+	*arr = *cloneArr;
 	callMergeSort(arr, 0, max - 1);
-	arr = cloneArr;
+	*arr = *cloneArr;
 	heapSort(arr, max);
-	arr = cloneArr;
+	*arr = *cloneArr;
 	callQuickSort(arr, 0, max - 1);
 
 
@@ -376,6 +377,7 @@ int main()
 	delete[] arr4;
 	arr4 = NULL;
 
+	system("pause");
 	return 0;
 }
 
