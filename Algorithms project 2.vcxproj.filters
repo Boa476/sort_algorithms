@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CombinedSorts.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="Algorithms Project 2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
