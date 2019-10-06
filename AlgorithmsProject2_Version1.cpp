@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const int SIZE = 10;
+const int SIZE = 100000;
 const int SIZE2 = 100;
 const int SIZE3 = 1000;
 const int SIZE4 = 10000;
@@ -126,7 +126,7 @@ void callMergeSort(int arr[], int l, int r)
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Merge sort:    \n");
 	//writeArray(arr);
-	cout << "Elapsed sorting time for Merge Sort: "<< time_elapsed / std::chrono::milliseconds(1) << " milliseconds.\n";
+	cout << "Elapsed sorting time for Merge Sort: "<< time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 
 }
 
@@ -160,7 +160,7 @@ void insertionSort(int arr[])
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Insertion sort:    \n");
 	//writeArray(arr);
-	cout << "Elapsed sorting time for Insertion Sort: " << time_elapsed / std::chrono::milliseconds(1) << " milliseconds.\n";
+	cout << "Elapsed sorting time for Insertion Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 }
 
 //----------------------------------------------------------------------------------
@@ -219,7 +219,7 @@ void heapSort(int arr[], int max)
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Heap sort:    \n");
 	//writeArray(arr);
-	cout << "Elapsed sorting time for Heap Sort: " << time_elapsed / std::chrono::milliseconds(1) << " milliseconds.\n";
+	cout << "Elapsed sorting time for Heap Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 }
 
 //------------------------------------------------------------------------------
@@ -287,7 +287,7 @@ void callQuickSort(int arr[], int low, int high)
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Quick sort:    \n");
 	//writeArray(arr);
-	cout << "Elapsed sorting time for Quick Sort: " << time_elapsed / std::chrono::milliseconds(1) << " milliseconds.\n";
+	cout << "Elapsed sorting time for Quick Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 
 }
 
