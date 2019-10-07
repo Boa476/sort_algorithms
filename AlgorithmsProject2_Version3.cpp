@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <chrono>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -18,22 +19,24 @@ time_t time0;
 time_t time1;
 
 // A utility function to print an array of size n 
-//void writeArray(int arr[])
-//{
-//	//Creates file object for merge sort[1000]
-//	ofstream mergefile;
-//	mergefile.open("mergesort.txt");
-//
-//	for (int i = 0; i < SIZE; i++) {
-//		//cout << arr[i] << " ";
-//		//cout << "\n";
-//		mergefile << arr[i] << " "; 
-//		
-//	}
-//
-//	
-//
-//}
+//void writeArray(int arr[], str sortType, int max, auto time, int comparisonCounter)
+{
+	//Creates file object for a given sort of a given size
+	ofstream file;
+	file.open(sortType + "_Size" + to_string(max));
+
+	for (int i = 0; i < SIZE; i++) {
+		//cout << arr[i] << " ";
+		//cout << "\n";
+		mergefile << arr[i] << ", "; 
+		
+	}
+	file << "\nElapsed sorting time for " << sortType << ": " << time / std::chrono::microseconds(1) << " microseconds.\n";
+	file << "Number of comparisons for " << sortType << ": " << comparisonCounter << " comparisons performed.\n\n";
+	
+	
+
+}
 
 void populateArray(int arr[], int max)
 {
@@ -134,14 +137,14 @@ void mergeSort(int arr[], int l, int r)
 
 }
 
-void callMergeSort(int arr[], int l, int r)
+void callMergeSort(int arr[], int l, int r, int max)
 {
 	//Reset comparison counter
 	comparisonCounter = 0;
 
 	//Creates file object for merge sort
-	ofstream mergefile; 
-	mergefile.open("mergeSort.txt"); 
+	//ofstream mergefile; 
+	//mergefile.open("mergeSort.txt"); 
 
 
 	auto time0 = std::chrono::high_resolution_clock::now(); // get current time.
@@ -149,17 +152,18 @@ void callMergeSort(int arr[], int l, int r)
 	auto time1 = std::chrono::high_resolution_clock::now(); // get current time after mergeSort().
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Merge sort:    \n");
-	//writeArray(arr);
 	cout << "Elapsed sorting time for Merge Sort: "<< time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 	cout << "Number of comparisons for Merge Sort: " << comparisonCounter << " comparisons performed.\n\n";
+	writeArray(arr, "merge_sort", max, time_elapsed / std::chrono::microseconds(1), comparisonCounter);
+	cout << "File written to project directory. Please check for output" << endl;
+
 
 	//writes and copies data to separate text file (mergesort.txt) into debug folder of the project.
 	
-	mergefile << "Merge Sort Algorithm Data: \n"; 
-	mergefile << "\nElapsed sorting time for Merge Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
-	mergefile << "Number of comparisons for Merge Sort: " << comparisonCounter << " comparisons performed.\n\n";
-	//writeArray(arr);
-	mergefile.close(); 
+	//mergefile << "Merge Sort Algorithm Data: \n"; 
+	//mergefile << "\nElapsed sorting time for Merge Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
+	//mergefile << "Number of comparisons for Merge Sort: " << comparisonCounter << " comparisons performed.\n\n";
+	//mergefile.close(); 
 
 }
 
@@ -200,9 +204,10 @@ void insertionSort(int arr[], int max)
 	auto time1 = std::chrono::high_resolution_clock::now(); // get current time after time pass.
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Insertion sort:    \n");
-	//writeArray(arr);
 	cout << "Elapsed sorting time for Insertion Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 	cout << "Number of comparisons for Insetion Sort: " << comparisonCounter << " comparisons performed.\n\n";
+	//writeArray(arr, "insertion_sort", max, time_elapsed / std::chrono::microseconds(1), comparisonCounter);
+
 }
 
 //Function to pass already sorted array and get the best case time
@@ -237,9 +242,10 @@ void insertionSortBest(int arr[], int max)
 	auto time1 = std::chrono::high_resolution_clock::now(); // get current time after time pass.
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Insertion sort:    \n");
-	//writeArray(arr);
 	cout << "Elapsed sorting time for Insertion Sort BEST CASE: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 	cout << "Number of comparisons for Insertion Sort BEST CASE: " << comparisonCounter << " comparisons performed.\n\n";
+	//writeArray(arr, "insertion_sort_best", max,time_elapsed / std::chrono::microseconds(1), comparisonCounter );
+
 }
 
 //----------------------------------------------------------------------------------
@@ -303,9 +309,10 @@ void heapSort(int arr[], int max)
 	auto time1 = std::chrono::high_resolution_clock::now(); // get current time after time pass.
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Heap sort:    \n");
-	//writeArray(arr);
 	cout << "Elapsed sorting time for Heap Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 	cout << "Number of comparisons for Heap Sort: " << comparisonCounter << " comparisons performed.\n\n";
+	//writeArray(arr, "heap_sort", max, time_elapsed / std::chrono::microseconds(1), comparisonCounter);
+
 }
 
 //------------------------------------------------------------------------------
@@ -378,23 +385,26 @@ void callQuickSort(int arr[], int low, int high)
 	auto time1 = std::chrono::high_resolution_clock::now(); // get current time after mergeSort().
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Quick sort:    \n");
-	//writeArray(arr);
+	//writeArray(arr, "Quick_Sort", max, time_elapsed / std::chrono::microseconds(1), comparisonCounter);
 	cout << "Elapsed sorting time for Quick Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 	cout << "Number of comparisons for Quick Sort: " << comparisonCounter << " comparisons performed.\n\n";
 
 }
 
 
-void callQuickSortWorst(int arr[], int low, int high)
+void callQuickSortWorst(int arr[], int low, int high, int max)
 {
+	//Reset comparison counter
+	comparisonCounter = 0;
+	
 	auto time0 = std::chrono::high_resolution_clock::now(); // get current time.
 	quickSort(arr, low, high);
 	auto time1 = std::chrono::high_resolution_clock::now(); // get current time after mergeSort().
 	auto time_elapsed = time1 - time0;
 	printf("Sorted array using Quick sort:    \n");
-	//writeArray(arr);
 	cout << "Elapsed sorting time for Quick Sort WORST CASE: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 	cout << "Number of comparisons for Quick Sort WORST CASE: " << comparisonCounter << " comparisons performed.\n\n\n\n";
+	//writeArray(arr, "Quick_Sort_Worst", max, time_elapsed / std::chrono::microseconds(1), comparisonCounter);
 
 }
 
@@ -409,17 +419,17 @@ void executeSorts(int arr[], int max)
 	int* cloneArr = new int[max];
 	for (int i = 0; i < max; i++)
 		cloneArr[i] = arr[i];
-	//writeArray(cloneArr);
+	//writeArray(cloneArr, 'baseArray', max);
 
-	insertionSort(arr, maz);
+	insertionSort(arr, max);
 	*arr = *cloneArr;
 	insertionSortBest(arr, max); //Get data for best case insertion sort
-	callMergeSort(arr, 0, max - 1);
+	callMergeSort(arr, 0, max - 1, max);
 	*arr = *cloneArr;
 	heapSort(arr, max);
 	*arr = *cloneArr;
-	callQuickSort(arr, 0, max - 1);
-	callQuickSortWorst(arr, 0, max - 1); //Get data for worst case insertion sort
+	callQuickSort(arr, 0, max - 1, max);
+	callQuickSortWorst(arr, 0, max - 1, max); //Get data for worst case insertion sort
 
 }
 
