@@ -9,7 +9,7 @@ const int SIZE = 10;
 const int SIZE2 = 100;
 const int SIZE3 = 1000;
 const int SIZE4 = 10000;
-const int seconds = 0;
+int seconds = 0;
 
 
 // A utility function to print an array of size n 
