@@ -169,7 +169,7 @@ void callMergeSort(int arr[], int l, int r)
 //InsertionSort - Best case = O(n), Average case = O(n^2)
 //*************
 
-void insertionSort(int arr[])
+void insertionSort(int arr[], int max)
 {
 	//Reset comparison counter
 	comparisonCounter = 0;
@@ -178,7 +178,7 @@ void insertionSort(int arr[])
 
 	int i, key, j;
 
-	for (i = 1; i < SIZE; i++) {
+	for (i = 1; i < max; i++) {
 		key = arr[i];
 		j = i - 1;
 		/* Move elements of arr[0..i-1], that are
@@ -206,7 +206,7 @@ void insertionSort(int arr[])
 }
 
 //Function to pass already sorted array and get the best case time
-void insertionSortBest(int arr[])
+void insertionSortBest(int arr[], int max)
 {
 	//Reset comparison counter
 	comparisonCounter = 0;
@@ -215,7 +215,7 @@ void insertionSortBest(int arr[])
 
 	int i, key, j;
 
-	for (i = 1; i < SIZE; i++) {
+	for (i = 1; i < max; i++) {
 		key = arr[i];
 		j = i - 1;
 		/* Move elements of arr[0..i-1], that are
@@ -407,13 +407,13 @@ void executeSorts(int arr[], int max)
 	populateArray(arr, max);
 	//Creates a dummy array to reset the value of arr[] to
 	int* cloneArr = new int[max];
-	for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i < max; i++)
 		cloneArr[i] = arr[i];
 	//writeArray(cloneArr);
 
-	insertionSort(arr);
+	insertionSort(arr, maz);
 	*arr = *cloneArr;
-	insertionSortBest(arr); //Get data for best case insertion sort
+	insertionSortBest(arr, max); //Get data for best case insertion sort
 	callMergeSort(arr, 0, max - 1);
 	*arr = *cloneArr;
 	heapSort(arr, max);
