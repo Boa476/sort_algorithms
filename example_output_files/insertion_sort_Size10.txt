@@ -1,0 +1,4 @@
+49, 191, 218, 311, 506, 630, 699, 803, 827, 870, 
+Elapsed sorting time for insertion_sort: 1 microseconds.
+Number of comparisons for insertion_sort: 17 comparisons performed.
+

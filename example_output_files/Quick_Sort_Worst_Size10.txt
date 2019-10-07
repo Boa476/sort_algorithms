@@ -1,0 +1,4 @@
+311, 506, 630, 803, 699, 699, 699, 699, 827, 870, 
+Elapsed sorting time for Quick_Sort_Worst: 4 microseconds.
+Number of comparisons for Quick_Sort_Worst: 6 comparisons performed.
+

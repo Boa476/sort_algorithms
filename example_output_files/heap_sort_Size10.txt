@@ -1,0 +1,4 @@
+218, 311, 506, 630, 699, 699, 699, 803, 827, 870, 
+Elapsed sorting time for heap_sort: 7 microseconds.
+Number of comparisons for heap_sort: 10 comparisons performed.
+

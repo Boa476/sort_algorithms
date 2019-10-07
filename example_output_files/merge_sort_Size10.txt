@@ -1,0 +1,4 @@
+191, 218, 311, 506, 630, 699, 699, 803, 827, 870, 
+Elapsed sorting time for merge_sort: 15 microseconds.
+Number of comparisons for merge_sort: 19 comparisons performed.
+
