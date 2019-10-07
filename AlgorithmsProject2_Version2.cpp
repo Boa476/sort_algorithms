@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -20,9 +21,19 @@ time_t time1;
 // A utility function to print an array of size n 
 void writeArray(int arr[])
 {
-	for (int i = 0; i < SIZE; i++)
-		cout << arr[i] << " ";
-	cout << "\n";
+	//Creates file object for merge sort[1000]
+	ofstream mergefile;
+	mergefile.open("mergesort.txt");
+
+	for (int i = 0; i < SIZE; i++) {
+		//cout << arr[i] << " ";
+		//cout << "\n";
+		mergefile << arr[i] << " "; 
+		
+	}
+
+	
+
 }
 
 void populateArray(int arr[], int max)
@@ -129,6 +140,11 @@ void callMergeSort(int arr[], int l, int r)
 	//Reset comparison counter
 	comparisonCounter = 0;
 
+	//Creates file object for merge sort
+	ofstream mergefile; 
+	mergefile.open("mergeSort.txt"); 
+
+
 	auto time0 = std::chrono::high_resolution_clock::now(); // get current time.
 	mergeSort(arr, l, r);
 	auto time1 = std::chrono::high_resolution_clock::now(); // get current time after mergeSort().
@@ -137,6 +153,14 @@ void callMergeSort(int arr[], int l, int r)
 	//writeArray(arr);
 	cout << "Elapsed sorting time for Merge Sort: "<< time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
 	cout << "Number of comparisons for Merge Sort: " << comparisonCounter << " comparisons performed.\n\n";
+
+	//writes and copies data to separate text file (mergesort.txt) into debug folder of the project.
+	
+	mergefile << "Merge Sort Algorithm Data: \n"; 
+	mergefile << "\nElapsed sorting time for Merge Sort: " << time_elapsed / std::chrono::microseconds(1) << " microseconds.\n";
+	mergefile << "Number of comparisons for Merge Sort: " << comparisonCounter << " comparisons performed.\n\n";
+	writeArray(arr);
+	mergefile.close(); 
 
 }
 
