@@ -469,14 +469,6 @@ void executeSorts(int arr[], int max)
 // Driver program to test above functions. 
 int main()
 {
-	
-	//Pre-sorted array to use for testing
-	int sortedArr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-
-
-	//Initialize variables for repeat program
-	char repeat = 0;
-
 	//Initialize dynamically allocated array using SIZE constant
 	int* arr = NULL;
 	arr = new int[SIZE];
